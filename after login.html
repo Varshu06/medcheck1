@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .leftside,.rightside{
+            height: 100vh;
+            width: 100%;
+        }
+        .leftside {
+            background-image: url("DOCTOR.jpg");
+            background-size: cover;
+        }
+        .rightside{
+            background-color: #0A4F51;
+        }
+        @media screen and (min-width:768px) {
+            .leftside.rightside{
+                height: 100vh;
+            }
+        }
+        #logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px; /* Adjust the width as needed */
+            height: auto;
+        }
+        img {
+            width: 60vw;
+            height: 100vh;
+            display: block;
+            object-fit: cover;
+            object-position: center; 
+        }
+        .right{
+            background-color: #0A4F51;
+        }
+        .border-box {
+            border: 1px solid black; /* Border color and thickness */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffffc2;
+            border-radius: 10px; /* Border radius */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+            align-items: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #107b7e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px 5px; /* Add margin around buttons for spacing */ 
+        }
+        .h4 {
+            top: 70%;
+            left: 50%; /* Adjusted left value to center the paragraph */
+            transform: translateX(-50%); /* Center the paragraph horizontally */
+            color: rgb(255, 255, 255); /* Change text color to white for better visibility on the image */
+        }
+        .logo-txt h4 {
+            position: absolute;
+            bottom: 4rem;
+            color: black ;
+        }
+        .logout{
+            padding-bottom:4px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 5px;
+            width: 100px; /* Adjust the width as needed */
+            height: auto;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="row no-gutters">
+        
+        <div class="col-md-8 no-gutters ">
+            <img id="logo" src="logo1.png" alt="Logo">
+            <div class="leftside d-flex justify-content-center align-items-center logo-txt ">
+                <h4 style="margin-top: 10rem;"> We care about your health and wellness</h4>
+            </div>
+        </div>
+        <div class="col-md-4 no-gutters">
+            <div class="rightside d-flex justify-content-center align-items-center ">
+                <div class="logout"><button onclick="confirmLogout()" class="btn btn-danger">Logout</button></div>
+                
+                <div class="border-box">
+                    <p >Hey <?php echo $_SESSION['username']; ?>, hope you have a good day!!</p>
+                    <div class="d-flex justify-content-between ">
+                        <a href="addnew.html"><button>NEW</button></a>
+                        <a href="modify.html"><button>MODIFY</button></a>
+                        <a href="patsignup.html"><button>Signup</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                window.location.href = "home.html";
+            }
+        }
+    </script>
+</body>
+</html>

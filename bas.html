@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #0A4F51;
+    }
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff57;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    #logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px; /* Adjust the width as needed */
+            height: auto;
+        }
+    h2 {
+        text-align: center;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="time"],
+    input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 3px solid #0a4f51bf;
+        box-sizing: border-box;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #0A4F51;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color:#107b7e ;
+    }
+</style>
+</head>
+<body>
+    <img id="logo" src="logo1.png" alt="Logo">
+
+<div class="container">
+    <h2>Create Patient Record</h2>
+    
+
+    <form id="signupForm" enctype="multipart/form-data" action="addnew_php.php" method="post" onsubmit="formatDate()">
+        <!-- Add onsubmit attribute to call JavaScript function -->
+
+        
+        <div class="form-group">
+            <label for="pat_id">Patient ID:</label>
+            <input type="text" id="pat_id" name="pat_id" required>
+        </div>
+        <div class="form-group">
+            <label for="pat_name">Patient Name:</label>
+            <input type="text" id="pat_name" name="pat_name" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        <div class="form-group">
+            <label for="phno">Phone Number:</label>
+            <input type="tel" id="phno" name="phno" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <div class="form-group">
+            <label for="disease">Disease:</label>
+            <input type="text" id="disease" name="disease" required>
+        </div>
+        <div class="form-group">
+            <label for="doc_id">Doctor ID:</label>
+            <input type="text" id="doc_id" name="doc_id" required>
+        </div>
+        <div class="form-group">
+            <label for="doc_name">Doctor Name:</label>
+            <input type="text" id="doc_name" name="doc_name" required>
+        </div>
+                        <!-- Prescription Details -->
+        <h2>Prescription Details</h2>
+        <div class="form-group">
+            <label for="tabletName">Tablet Name:</label>
+            <input type="text" name="tabletName[]" required>
+        </div>
+        <div id="tabletDetails" class="tablet-details"> <!-- Corrected id attribute -->
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity[]" required>
+            <label for="intakeTime">Intake Time:</label> <!-- Corrected for attribute -->
+            <select name="intakeTime[]" required>
+                <option value="morning-before">Morning - Before</option>
+                <option value="morning-after">Morning - After</option>
+                <option value="afternoon-before">Afternoon - Before</option>
+                <option value="afternoon-after">Afternoon - After</option>
+                <option value="dinner-before">Dinner - Before</option>
+                <option value="dinner-after">Dinner - After</option>
+            </select>
+            <label for="time">time:</label>
+            <input type="time" name="time[]" required>
+        </div>
+        <button type="button" onclick="addTablet()">Add Tablet</button>
+            
+                        <!-- Upload Prescription Image -->
+       <!-- <label for="prescriptionImage">Prescription Image:</label>
+        <input type="file" id="prescriptionImage" name="prescriptionImage" accept="image/*" required>
+        -->
+        <div class="form-group">
+            <label for="time">date:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+            
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<script>
+    function formatDate() {
+        // Get the value of the date input
+        var dateInput = document.getElementById('date').value;
+
+        // Split the date into parts (year, month, day)
+        var dateParts = dateInput.split('-');
+
+        // Reformat the date to match the expected format (YYYY-MM-DD)
+        var formattedDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
+
+        // Update the input value with the reformatted date
+        document.getElementById('date').value = formattedDate;
+    }
+    function addTablet() {
+        var tabletDetails = document.getElementById('tabletDetails');
+        var newTablet = document.createElement('div');
+        newTablet.classList.add('tablet-details');
+        newTablet.innerHTML = `
+            <label for="tabletName">Tablet Name:</label>
+            <input type="text" name="tabletName[]" required>
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity[]" required>
+            <label for="intakeTime">Intake Time:</label>
+            <select name="intakeTime[]" required>
+                <option value="morning-before">Morning - Before</option>
+                <option value="morning-after">Morning - After</option>
+                <option value="afternoon-before">Afternoon - Before</option>
+                <option value="afternoon-after">Afternoon - After</option>
+                <option value="dinner-before">Dinner - Before</option>
+                <option value="dinner-after">Dinner - After</option>
+            </select>
+            
+        `;
+        tabletDetails.appendChild(newTablet);
+    }
+</script>
+
+</body>
+</html>
